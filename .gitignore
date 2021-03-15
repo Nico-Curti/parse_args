@@ -30,3 +30,29 @@
 *.exe
 *.out
 *.app
+
+# Directories
+[Bb]in/
+[Oo]bj/
+.[Dd]ep/
+[Bb]uild*/
+[Dd]ata/
+*.egg-info
+__pycache__/
+[Dd]ata/
+[Ss]hare/
+[Ll]ib/
+
+# Utilities
+*.pc
+
+# coverage
+.coverage
+.coverage.*
+coverage.*
+html*
+
+# documentation
+docs/source/doxydoc/*.xsd
+docs/source/doxydoc/*.xslt
+

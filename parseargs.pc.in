@@ -1,0 +1,12 @@
+prefix=@CMAKE_SOURCE_DIR@
+exec_prefix=${prefix}
+includedir=${prefix}/include
+hppdir=${prefix}/hpp
+libdir=${exec_prefix}/lib
+
+Name: parseargs
+Description: A library for reading whole slide images.
+
+Version: @PARSE_ARGS_VERSION@
+Libs: -L${libdir} -l@CMAKE_STATIC_LIBRARY_PREFIX@parseargs
+Cflags: -I${includedir}/parseargs
