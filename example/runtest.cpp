@@ -16,18 +16,18 @@ void parse_args (int argc, char ** argv,
   // Syntax : argparse.add_argument < dtype > (tag_name, short_flag, long_flag, help_message, required, default_value)
 
   argparse.add_argument < std :: string >("sArg", "s", "str_value",  "This is the help message for the string value set as --str_value",  false, "This is the default value");
-  argparse.add_argument < int32_t >(      "iArg", "i", "int_value",  "This is the help message for the int    value set as --int_value",  false, 42);
-  argparse.add_argument < double >(       "dArg", "d", "dbl_value",  "This is the help message for the double value set as --dbl_value",  false, 3.14);
-  argparse.add_argument < float >(        "fArg", "f", "flt_value",  "This is the help message for the float  value set as --flt_value",  false, 1.23f);
-  argparse.add_argument < bool >(         "bArg", "b", "bool_value", "This is the help message for the bool   value set as --bool_value", true,  true);
+  argparse.add_argument < int32_t       >("iArg", "i", "int_value",  "This is the help message for the int    value set as --int_value",  false, 42);
+  argparse.add_argument < double        >("dArg", "d", "dbl_value",  "This is the help message for the double value set as --dbl_value",  false, 3.14);
+  argparse.add_argument < float         >("fArg", "f", "flt_value",  "This is the help message for the float  value set as --flt_value",  false, 1.23f);
+  argparse.add_argument < bool          >("bArg", "b", "bool_value", "This is the help message for the bool   value set as --bool_value", true);
 
   argparse.parse_args(argc, argv);
 
-  argparse.get < std :: string >("sArg", s);
-  argparse.get < int32_t >(      "iArg", i);
-  argparse.get < double >(       "dArg", d);
-  argparse.get < float >(        "fArg", f);
-  argparse.get < bool >(         "bArg", b);
+  argparse.get("sArg", s);
+  argparse.get("iArg", i);
+  argparse.get("dArg", d);
+  argparse.get("fArg", f);
+  argparse.get("bArg", b);
 
   return;
 }

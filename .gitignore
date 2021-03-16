@@ -53,6 +53,6 @@ coverage.*
 html*
 
 # documentation
-docs/source/doxydoc/*.xsd
-docs/source/doxydoc/*.xslt
+docs/[Dd]oxydoc
+docs/[Dd]oxydoc
 

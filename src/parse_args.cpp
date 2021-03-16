@@ -17,13 +17,13 @@ int32_t ArgumentParser :: ERROR_PARSER_CHAR     = 109;
 
 // Argument Class
 
-argument :: argument (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & required, std :: string && defualt_value, std :: string && data_type)
-                      : name (std :: move(name)), short_flag (std :: move(short_flag)), long_flag (std :: move(long_flag)), help (std :: move(help)), defualt_value (std :: move(defualt_value)), data_type (std :: move(data_type)), required (required)
+ArgumentParser :: argument :: argument (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & required, std :: string && defualt_value, std :: string && data_type)
+                                       : name (std :: move(name)), short_flag (std :: move(short_flag)), long_flag (std :: move(long_flag)), help (std :: move(help)), defualt_value (std :: move(defualt_value)), data_type (std :: move(data_type)), required (required)
 {
 }
 
 
-// ArgumentParse Class
+// ArgumentParser Class
 
 ArgumentParser :: ArgumentParser ( std :: string && description ) : description (std :: move(description))
 {
@@ -178,6 +178,21 @@ void ArgumentParser :: error_parsing_char (const std :: string & name, const std
   this->print_help(ArgumentParser :: ERROR_PARSER_CHAR);
 }
 
+
+// export the specialized members
+
+template void ArgumentParser :: add_argument < int >(std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, int default_value=int());
+template void ArgumentParser :: add_argument < float >(std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, float default_value=float());
+template void ArgumentParser :: add_argument < double >(std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, double default_value=double());
+template void ArgumentParser :: add_argument < std :: string >(std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, std :: string default_value=std :: string());
+template void ArgumentParser :: add_argument < bool >(std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, bool default_value=bool());
+
+
+template void ArgumentParser :: get < int >(const std :: string & name, int & values);
+template void ArgumentParser :: get < float >(const std :: string & name, float & values);
+template void ArgumentParser :: get < double >(const std :: string & name, double & values);
+template void ArgumentParser :: get < std :: string >(const std :: string & name, std :: string & values);
+template void ArgumentParser :: get < bool >(const std :: string & name, bool & values);
 
 
 } // end namespace parser

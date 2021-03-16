@@ -14,7 +14,7 @@ namespace parser
 {
 
 template < typename data_t >
-void ArgumentParser :: add_argument (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, data_t && default_value)
+void ArgumentParser :: add_argument (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, data_t default_value)
 {
   static_assert (!std :: is_same_v < data_t, int32_t > ||
                  !std :: is_same_v < data_t, float >   ||
