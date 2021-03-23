@@ -181,11 +181,11 @@ void ArgumentParser :: error_parsing_char (const std :: string & name, const std
 
 // export the specialized members
 
-template void ArgumentParser :: add_argument < int >(std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, int default_value=int());
-template void ArgumentParser :: add_argument < float >(std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, float default_value=float());
-template void ArgumentParser :: add_argument < double >(std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, double default_value=double());
-template void ArgumentParser :: add_argument < std :: string >(std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, std :: string default_value=std :: string());
-template void ArgumentParser :: add_argument < bool >(std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, bool default_value=bool());
+template void ArgumentParser :: add_argument < int >(std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, int default_value);
+template void ArgumentParser :: add_argument < float >(std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, float default_value);
+template void ArgumentParser :: add_argument < double >(std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, double default_value);
+template void ArgumentParser :: add_argument < std :: string >(std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, std :: string default_value);
+template void ArgumentParser :: add_argument < bool >(std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, bool default_value);
 
 
 template void ArgumentParser :: get < int >(const std :: string & name, int & values);
