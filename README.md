@@ -4,7 +4,7 @@
 
 | **Windows CI** | **MacOS CI** | **Linux CI** |
 |:--------------:|:------------:|:------------:|
-| [![Windows CI](https://github.com/Nico-Curti/parse_args/actions/workflows/windows.yml/badge.svg)](https://github.com/Nico-Curti/parse_args/actions/workflows/windows.yml) | [![MacOS CI](https://github.com/Nico-Curti/parse_args/actions/workflows/macos.yml/badge.svg)](https://github.com/Nico-Curti/parse_args/actions/workflows/macos.yml) | [![Linux CI](https://github.com/Nico-Curti/parse_args/actions/workflows/linux.yml/badge.svg)](https://github.com/Nico-Curti/parse_args/actions/workflows/linux.yml) |
+| [![Windows ParseArgs CI](https://github.com/Nico-Curti/parse_args/actions/workflows/windows.yml/badge.svg?branch=main)](https://github.com/Nico-Curti/parse_args/actions/workflows/windows.yml) | [![MacOS ParseArgs CI](https://github.com/Nico-Curti/parse_args/actions/workflows/macos.yml/badge.svg?branch=main)](https://github.com/Nico-Curti/parse_args/actions/workflows/macos.yml) | [![Linux ParseArgs CI](https://github.com/Nico-Curti/parse_args/actions/workflows/linxu.yml/badge.svg?branch=main)](https://github.com/Nico-Curti/parse_args/actions/workflows/linxu.yml) |
 
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/Nico-Curti/parse_args.svg?style=plastic)](https://github.com/Nico-Curti/parse_args/pulls)
 [![GitHub issues](https://img.shields.io/github/issues/Nico-Curti/parse_args.svg?style=plastic)](https://github.com/Nico-Curti/parse_args/issues)
@@ -70,7 +70,7 @@ include_directories (${ParseArgs_INCLUDE_DIR})
 list (APPEND linked_libs ParseArgs::parseargs)
 ```
 
-If your system doesn't automatically find the correct include path you can provided it in the CMake command line using the `-DPARSE_ARGS_DIR:FILEPATH="/path/to/parseargs/share/parseargs/"` variable.
+If your system doesn't automatically find the correct include path you can provided it in the CMake command line using the `-DParseArgs_DIR:FILEPATH="/path/to/parseargs/share/parseargs/"` variable.
 
 ### Import the library using pkg-config
 
