@@ -56,15 +56,11 @@ if ( CMAKE_COMPILER_IS_GNUCXX )
   if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     string (REGEX REPLACE "-O[0123]" "-Og" CMAKE_CXX_FLAGS_DEBUG ${CMAKE_CXX_FLAGS_DEBUG})
     set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG" )
-    set (CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -DDEBUG" )
     set (CMAKE_CXX_FLAGS_RELEASE "")
-    set (CMAKE_C_FLAGS_RELEASE "")
   elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
     string (REGEX REPLACE "-O3" "-Ofast" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
     set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DNDEBUG" )
-    set (CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -DNDEBUG" )
     set (CMAKE_CXX_FLAGS_DEBUG "")
-    set (CMAKE_C_FLAGS_DEBUG "")
   endif()
 endif()
 
@@ -88,12 +84,10 @@ if (MSVC)
 
   set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} /DCMAKE_BUILD /DG_DISABLE_SINGLE_INCLUDES")
   set(ADDITIONAL_CXX_FLAGS "/wd4013 /wd4018 /wd4028 /wd4047 /wd4068 /wd4090 /wd4101 /wd4113 /wd4133 /wd4190 /wd4244 /wd4267 /wd4305 /wd4477 /wd4996 /wd4819 /fp:fast")
-  set(ADDITIONAL_C_FLAGS "/wd4013 /wd4018 /wd4028 /wd4047 /wd4068 /wd4090 /wd4101 /wd4113 /wd4133 /wd4190 /wd4244 /wd4267 /wd4305 /wd4477 /wd4996 /wd4819 /fp:fast")
   set(CMAKE_CXX_FLAGS "${ADDITIONAL_CXX_FLAGS} ${CMAKE_CXX_FLAGS}")
   string(REGEX REPLACE "/O2" "/Ox" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
 else ()
   set(ADDITIONAL_CXX_FLAGS "-Wall -Wno-unused-result -Wno-unknown-pragmas -Wfatal-errors -Wno-deprecated-declarations -Wno-write-strings")
-  set(ADDITIONAL_C_FLAGS "-Wall -Wno-unused-result -Wno-unknown-pragmas -Wfatal-errors -Wno-deprecated-declarations -Wno-write-strings")
   set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -DCMAKE_BUILD -DG_DISABLE_SINGLE_INCLUDES")
 endif()
 
@@ -113,15 +107,15 @@ endif()
 #                         SETTING DIRECTORIES                   #
 #################################################################
 
-set(SRC_DIR  ${CMAKE_CURRENT_LIST_DIR}/src      CACHE PATH "Path where find cpp files"                 )
-set(INC_DIR  ${CMAKE_CURRENT_LIST_DIR}/include  CACHE PATH "Path where find header files"              )
-set(HPP_DIR  ${CMAKE_CURRENT_LIST_DIR}/hpp      CACHE PATH "Path where find hpp files"                 )
-set(EXAMPLE  ${CMAKE_CURRENT_LIST_DIR}/example  CACHE PATH "Path where find examples files"                   )
+set(SRC_DIR  "${CMAKE_CURRENT_LIST_DIR}/src"      CACHE PATH "Path where find cpp files"      )
+set(INC_DIR  "${CMAKE_CURRENT_LIST_DIR}/include"  CACHE PATH "Path where find header files"   )
+set(HPP_DIR  "${CMAKE_CURRENT_LIST_DIR}/hpp"      CACHE PATH "Path where find hpp files"      )
+set(EXAMPLE  "${CMAKE_CURRENT_LIST_DIR}/example"  CACHE PATH "Path where find examples files" )
 
-set (INSTALL_BIN_DIR  ${CMAKE_CURRENT_LIST_DIR}/bin      CACHE PATH "Path where outputs will be installed" FORCE)
-set (INSTALL_LIB_DIR  ${CMAKE_CURRENT_LIST_DIR}/lib      CACHE PATH "Path where lib will be installed"     FORCE)
+set (INSTALL_BIN_DIR  "${CMAKE_CURRENT_LIST_DIR}/bin"      CACHE PATH "Path where outputs will be installed" FORCE)
+set (INSTALL_LIB_DIR  "${CMAKE_CURRENT_LIST_DIR}/lib"      CACHE PATH "Path where lib will be installed"     FORCE)
 
-set (INSTALL_INCLUDE_DIR  "include/parseargs"  CACHE PATH "Path where headers will be installed")
+set (INSTALL_INCLUDE_DIR  "include/parseargs"  CACHE PATH "Path where headers will be installed"      )
 set (INSTALL_CMAKE_DIR    "share/parseargs"    CACHE PATH "Path where cmake configs will be installed")
 
 set(CMAKE_DEBUG_POSTFIX d)
@@ -209,7 +203,9 @@ install(TARGETS ${parseargslib} EXPORT ParseArgsTargets
 # runtest
 add_executable(runtest "${EXAMPLE}/runtest.cpp")
 target_link_libraries(runtest ${parseargslib})
-install(TARGETS runtest DESTINATION "${OUT_DIR}")
+install(TARGETS runtest
+  DESTINATION
+  "${INSTALL_BIN_DIR}")
 
 
 #################################################################

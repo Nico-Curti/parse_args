@@ -4,7 +4,7 @@
 
 | **Windows CI** | **MacOS CI** | **Linux CI** |
 |:--------------:|:------------:|:------------:|
-| [![Windows ParseArgs CI](https://github.com/Nico-Curti/parse_args/actions/workflows/windows.yml/badge.svg?branch=main)](https://github.com/Nico-Curti/parse_args/actions/workflows/windows.yml) | [![MacOS ParseArgs CI](https://github.com/Nico-Curti/parse_args/actions/workflows/macos.yml/badge.svg?branch=main)](https://github.com/Nico-Curti/parse_args/actions/workflows/macos.yml) | [![Linux ParseArgs CI](https://github.com/Nico-Curti/parse_args/actions/workflows/linxu.yml/badge.svg?branch=main)](https://github.com/Nico-Curti/parse_args/actions/workflows/linxu.yml) |
+| [![Windows ParseArgs CI](https://github.com/Nico-Curti/parse_args/actions/workflows/windows.yml/badge.svg?branch=main)](https://github.com/Nico-Curti/parse_args/actions/workflows/windows.yml) | [![MacOS ParseArgs CI](https://github.com/Nico-Curti/parse_args/actions/workflows/macos.yml/badge.svg?branch=main)](https://github.com/Nico-Curti/parse_args/actions/workflows/macos.yml) | [![Linux ParseArgs CI](https://github.com/Nico-Curti/parse_args/actions/workflows/linux.yml/badge.svg?branch=main)](https://github.com/Nico-Curti/parse_args/actions/workflows/linux.yml) |
 
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/Nico-Curti/parse_args.svg?style=plastic)](https://github.com/Nico-Curti/parse_args/pulls)
 [![GitHub issues](https://img.shields.io/github/issues/Nico-Curti/parse_args.svg?style=plastic)](https://github.com/Nico-Curti/parse_args/issues)

@@ -15,6 +15,11 @@ vcpkg_cmake_configure(
 )
 
 vcpkg_cmake_install()
+
+if(VCPKG_LIBRARY_LINKAGE STREQUAL static)
+  file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/bin" "${CURRENT_PACKAGES_DIR}/debug/bin")
+endif()
+
 vcpkg_cmake_config_fixup()
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
