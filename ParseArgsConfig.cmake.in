@@ -1,7 +1,7 @@
 # Config file for the ParseArgs package
 
-get_filename_component(PARSE_ARGS_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
-list(APPEND CMAKE_MODULE_PATH "${PARSE_ARGS_CMAKE_DIR}")
+get_filename_component(ParseArgs_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+list(APPEND CMAKE_MODULE_PATH "${ParseArgs_CMAKE_DIR}")
 
 include(CMakeFindDependencyMacro)
 
@@ -10,11 +10,11 @@ if(MSVC)
 endif()
 
 # Our library dependencies (contains definitions for IMPORTED targets)
-include("${PARSE_ARGS_CMAKE_DIR}/ParseArgsTargets.cmake")
-include("${PARSE_ARGS_CMAKE_DIR}/ParseArgsConfigVersion.cmake")
+include("${ParseArgs_CMAKE_DIR}/ParseArgsTargets.cmake")
+include("${ParseArgs_CMAKE_DIR}/ParseArgsConfigVersion.cmake")
 
-get_target_property(FULL_PARSE_ARGS_INCLUDE_DIRS ParseArgs::parseargs INTERFACE_INCLUDE_DIRECTORIES)
+get_target_property(FULL_ParseArgs_INCLUDE_DIRS ParseArgs::parseargs INTERFACE_INCLUDE_DIRECTORIES)
 list(GET FULL_PARSE_ARGS_INCLUDE_DIRS 0 PARSE_ARGS_INCLUDE_DIR)
-get_filename_component(PARSE_ARGS_INCLUDE_DIR "${PARSE_ARGS_INCLUDE_DIR}" REALPATH)
+get_filename_component(ParseArgs_INCLUDE_DIR "${ParseArgs_INCLUDE_DIR}" REALPATH)
 
-find_package_handle_standard_args(ParseArgs REQUIRED_VARS PARSE_ARGS_INCLUDE_DIR VERSION_VAR PACKAGE_VERSION)
+find_package_handle_standard_args(ParseArgs REQUIRED_VARS ParseArgs_INCLUDE_DIR VERSION_VAR PACKAGE_VERSION)

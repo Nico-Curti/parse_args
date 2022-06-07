@@ -1,12 +1,9 @@
-prefix=@CMAKE_SOURCE_DIR@
-exec_prefix=${prefix}
-includedir=${prefix}/include
-hppdir=${prefix}/hpp
-libdir=${exec_prefix}/lib
+libdir=@CMAKE_SOURCE_PATH@/lib
+includedir=@CMAKE_SOURCE_PATH@/include
 
-Name: parseargs
-Description: A library for reading whole slide images.
+Name: ParseArgs
+Description: A library for parsing command line arguments in C++.
 
-Version: @PARSE_ARGS_VERSION@
-Libs: -L${libdir} -l@CMAKE_STATIC_LIBRARY_PREFIX@parseargs
-Cflags: -I${includedir}/parseargs
+Version: @ParseArgs_VERSION@
+Libs: -L${libdir} -l@CMAKE_STATIC_LIBRARY_PREFIX@parseargs/lib/
+Cflags: -I${includedir}

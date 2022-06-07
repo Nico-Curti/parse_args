@@ -2,11 +2,23 @@
 |:------------:|:-----------:|
 | [**N. Curti**](https://github.com/Nico-Curti) |  **parse args**  |
 
+| **Windows CI** | **MacOS CI** | **Linux CI** |
+|:--------------:|:------------:|:------------:|
+| [![Windows CI](https://github.com/Nico-Curti/parse_args/actions/workflows/windows.yml/badge.svg)](https://github.com/Nico-Curti/parse_args/actions/workflows/windows.yml) | [![MacOS CI](https://github.com/Nico-Curti/parse_args/actions/workflows/macos.yml/badge.svg)](https://github.com/Nico-Curti/parse_args/actions/workflows/macos.yml) | [![Linux CI](https://github.com/Nico-Curti/parse_args/actions/workflows/linux.yml/badge.svg)](https://github.com/Nico-Curti/parse_args/actions/workflows/linux.yml) |
+
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/Nico-Curti/parse_args.svg?style=plastic)](https://github.com/Nico-Curti/parse_args/pulls)
 [![GitHub issues](https://img.shields.io/github/issues/Nico-Curti/parse_args.svg?style=plastic)](https://github.com/Nico-Curti/parse_args/issues)
 
 [![GitHub stars](https://img.shields.io/github/stars/Nico-Curti/parse_args.svg?label=Stars&style=social)](https://github.com/Nico-Curti/parse_args/stargazers)
 [![GitHub watchers](https://img.shields.io/github/watchers/Nico-Curti/parse_args.svg?label=Watch&style=social)](https://github.com/Nico-Curti/parse_args/watchers)
+
+**C supported compilers:**
+
+![gcc version](https://img.shields.io/badge/gcc-4.9.*|5.*|6.*|7.*|8.*|9.*|10.*-yellow.svg)
+
+![clang version](https://img.shields.io/badge/clang-3.*|4.*|5.*|6.*|7.*|8.*|9.*|10.*-red.svg)
+
+![msvc version](https://img.shields.io/badge/msvc-vs2017%20x86%20|%20vs2017%20x64|%20vs2019%20x86%20|%20vs2019%20x64-blue.svg)
 
 <a href="https://github.com/UniboDIFABiophysics">
   <div class="image">
@@ -54,7 +66,7 @@ Into your CMake file you can just use the commands
 
 ```bash
 find_package(ParseArgs REQUIRED)
-include_directories (${PARSE_ARGS_INCLUDE_DIR})
+include_directories (${ParseArgs_INCLUDE_DIR})
 list (APPEND linked_libs ParseArgs::parseargs)
 ```
 

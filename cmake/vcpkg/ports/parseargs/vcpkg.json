@@ -1,0 +1,18 @@
+{
+  "name": "parseargs",
+  "version-semver": "1.0.0",
+  "port-version": 1,
+  "description": "Command line parser in C++",
+  "homepage": "https://github.com/Nico-Curti/parse_args",
+  "license": "MIT",
+  "dependencies": [
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
+  ]
+}
