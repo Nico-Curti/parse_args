@@ -1,6 +1,7 @@
 vcpkg_from_github(
   OUT_SOURCE_PATH SOURCE_PATH
   REPO Nico-Curti/parse_args
+  HEAD_REF master
   REF ...
   SHA512 ...
 )

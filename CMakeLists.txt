@@ -107,11 +107,6 @@ endif()
 #                         SETTING DIRECTORIES                   #
 #################################################################
 
-set(SRC_DIR  "${CMAKE_CURRENT_LIST_DIR}/src"      CACHE PATH "Path where find cpp files"      )
-set(INC_DIR  "${CMAKE_CURRENT_LIST_DIR}/include"  CACHE PATH "Path where find header files"   )
-set(HPP_DIR  "${CMAKE_CURRENT_LIST_DIR}/hpp"      CACHE PATH "Path where find hpp files"      )
-set(EXAMPLE  "${CMAKE_CURRENT_LIST_DIR}/example"  CACHE PATH "Path where find examples files" )
-
 set (INSTALL_BIN_DIR  "${CMAKE_CURRENT_LIST_DIR}/bin"      CACHE PATH "Path where outputs will be installed" FORCE)
 set (INSTALL_LIB_DIR  "${CMAKE_CURRENT_LIST_DIR}/lib"      CACHE PATH "Path where lib will be installed"     FORCE)
 
@@ -120,24 +115,24 @@ set (INSTALL_CMAKE_DIR    "share/parseargs"    CACHE PATH "Path where cmake conf
 
 set(CMAKE_DEBUG_POSTFIX d)
 
-file(GLOB SRC    "${SRC_DIR}/*.cpp" )
-file(GLOB HEADER "${INC_DIR}/*.h" )
-file(GLOB HPP    "${HPP_DIR}/*.hpp" )
+file(GLOB ParseArgs_SRC    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp" )
+file(GLOB ParseArgs_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h" )
+file(GLOB ParseArgs_HPP    "${CMAKE_CURRENT_SOURCE_DIR}/hpp/*.hpp" )
 
 
 set (parseargslib parseargs)
 
-include_directories(${INC_DIR})
-include_directories(${HPP_DIR})
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/hpp")
 
 if (BUILD_DOCS)
-  add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/docs/")
+  add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/docs/")
 endif ()
 
 
 configure_file(
-  "${CMAKE_CURRENT_LIST_DIR}/parseargs.pc.in"
-  "${CMAKE_CURRENT_LIST_DIR}/parseargs.pc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/parseargs.pc.in"
+  "${CMAKE_CURRENT_SOURCE_DIR}/parseargs.pc"
   @ONLY)
 message(STATUS "Pkg-config generated")
 
@@ -185,11 +180,11 @@ message(STATUS ""                                                               
 #################################################################
 
 
-add_library(${parseargslib} ${SRC} ${HEADER} ${HPP})
+add_library(${parseargslib} ${ParseArgs_SRC} ${ParseArgs_HEADER} ${ParseArgs_HPP})
 set_target_properties(${parseargslib} PROPERTIES POSITION_INDEPENDENT_CODE ON)
-target_include_directories(${parseargslib} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include> $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/hpp> $<INSTALL_INTERFACE:${INSTALL_INCLUDE_DIR}>)
+target_include_directories(${parseargslib} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/hpp> $<INSTALL_INTERFACE:${INSTALL_INCLUDE_DIR}>)
 
-set_target_properties(${parseargslib} PROPERTIES PUBLIC_HEADER "${CMAKE_CURRENT_LIST_DIR}/include/parse_args.h" "${CMAKE_CURRENT_LIST_DIR}/hpp/parse_args.hpp" "${CMAKE_CURRENT_LIST_DIR}/hpp/parse_args_old.hpp")
+set_target_properties(${parseargslib} PROPERTIES PUBLIC_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/include/parse_args.h" "${CMAKE_CURRENT_SOURCE_DIR}/hpp/parse_args.hpp" "${CMAKE_CURRENT_SOURCE_DIR}/hpp/parse_args_old.hpp")
 set_target_properties(${parseargslib} PROPERTIES CXX_VISIBILITY_PRESET hidden)
 
 install(TARGETS ${parseargslib} EXPORT ParseArgsTargets
@@ -201,7 +196,7 @@ install(TARGETS ${parseargslib} EXPORT ParseArgsTargets
 )
 
 # runtest
-add_executable(runtest "${EXAMPLE}/runtest.cpp")
+add_executable(runtest "${CMAKE_CURRENT_SOURCE_DIR}/example/runtest.cpp")
 target_link_libraries(runtest ${parseargslib})
 install(TARGETS runtest
   DESTINATION
