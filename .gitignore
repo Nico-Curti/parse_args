@@ -56,3 +56,4 @@ html*
 docs/[Dd]oxydoc
 docs/[Dd]oxydoc
 
+include/parseargs/
