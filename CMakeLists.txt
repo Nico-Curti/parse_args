@@ -184,8 +184,7 @@ add_library(${parseargslib} ${ParseArgs_SRC} ${ParseArgs_HEADER} ${ParseArgs_HPP
 set_target_properties(${parseargslib} PROPERTIES POSITION_INDEPENDENT_CODE ON)
 target_include_directories(${parseargslib} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/hpp> $<INSTALL_INTERFACE:${INSTALL_INCLUDE_DIR}>)
 
-set_target_properties(${parseargslib} PROPERTIES PUBLIC_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/include/parse_args.h" "${CMAKE_CURRENT_SOURCE_DIR}/hpp/parse_args.hpp" "${CMAKE_CURRENT_SOURCE_DIR}/hpp/parse_args_old.hpp")
-set_target_properties(${parseargslib} PROPERTIES CXX_VISIBILITY_PRESET hidden)
+set_target_properties(${parseargslib} PROPERTIES PUBLIC_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/include/parse_args.h;${CMAKE_CURRENT_SOURCE_DIR}/hpp/parse_args.hpp;${CMAKE_CURRENT_SOURCE_DIR}/hpp/parse_args_old.hpp")
 
 install(TARGETS ${parseargslib} EXPORT ParseArgsTargets
   RUNTIME DESTINATION "${INSTALL_BIN_DIR}"
