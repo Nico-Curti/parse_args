@@ -14,6 +14,9 @@ void ArgumentParser :: add_argument < int32_t > (std :: string && name,
   const bool & req,
   int32_t && default_value)
 {
+  if (long_flag == "help")
+    this->error_private_flag(long_flag);
+
   std :: string string_data_type = "int";
   this->args.emplace_back(argument(static_cast < std :: string && >(name),
     static_cast < std :: string && >(short_flag),
@@ -22,7 +25,8 @@ void ArgumentParser :: add_argument < int32_t > (std :: string && name,
     req,
     false, // is_flag
     static_cast < std :: string && >(std :: to_string(default_value)),
-    static_cast < std :: string && >(string_data_type)));
+    static_cast < std :: string && >(string_data_type))
+  );
 }
 
 template < >
@@ -32,6 +36,9 @@ void ArgumentParser :: add_argument < float > (std :: string && name,
   const bool & req,
   float && default_value)
 {
+  if (long_flag == "help")
+    this->error_private_flag(long_flag);
+
   std :: string string_data_type = "float";
   this->args.emplace_back(argument(static_cast < std :: string && >(name),
     static_cast < std :: string && >(short_flag),
@@ -40,7 +47,8 @@ void ArgumentParser :: add_argument < float > (std :: string && name,
     req,
     false, // is_flag
     static_cast < std :: string && >(std :: to_string(default_value)),
-    static_cast < std :: string && >(string_data_type)));
+    static_cast < std :: string && >(string_data_type))
+  );
 }
 
 template < >
@@ -50,6 +58,9 @@ void ArgumentParser :: add_argument < double > (std :: string && name,
   const bool & req,
   double && default_value)
 {
+  if (long_flag == "help")
+    this->error_private_flag(long_flag);
+
   std :: string string_data_type = "double";
   this->args.emplace_back(argument(static_cast < std :: string && >(name),
     static_cast < std :: string && >(short_flag),
@@ -58,7 +69,8 @@ void ArgumentParser :: add_argument < double > (std :: string && name,
     req,
     false, // is_flag
     static_cast < std :: string && >(std :: to_string(default_value)),
-    static_cast < std :: string && >(string_data_type)));
+    static_cast < std :: string && >(string_data_type))
+  );
 }
 
 template < >
@@ -68,6 +80,9 @@ void ArgumentParser :: add_argument < char > (std :: string && name,
   const bool & req,
   char && default_value)
 {
+  if (long_flag == "help")
+    this->error_private_flag(long_flag);
+
   std :: string string_data_type = "char";
   this->args.emplace_back(argument(static_cast < std :: string && >(name),
     static_cast < std :: string && >(short_flag),
@@ -76,7 +91,8 @@ void ArgumentParser :: add_argument < char > (std :: string && name,
     req,
     false, // is_flag
     static_cast < std :: string && >(std :: to_string(default_value)),
-    static_cast < std :: string && >(string_data_type)));
+    static_cast < std :: string && >(string_data_type))
+  );
 }
 
 template < >
@@ -86,6 +102,9 @@ void ArgumentParser :: add_argument < bool > (std :: string && name,
   const bool & req,
   bool && default_value)
 {
+  if (long_flag == "help")
+    this->error_private_flag(long_flag);
+
   std :: string string_data_type = "bool";
   this->args.emplace_back(argument(static_cast < std :: string && >(name),
     static_cast < std :: string && >(short_flag),
@@ -94,7 +113,8 @@ void ArgumentParser :: add_argument < bool > (std :: string && name,
     req,
     false, // is_flag
     static_cast < std :: string && >(std :: to_string(default_value)),
-    static_cast < std :: string && >(string_data_type)));
+    static_cast < std :: string && >(string_data_type))
+  );
 }
 
 template < >
@@ -104,6 +124,9 @@ void ArgumentParser :: add_argument < std :: string > (std :: string && name,
   const bool & req,
   std :: string && default_value)
 {
+  if (long_flag == "help")
+    this->error_private_flag(long_flag);
+
   std :: string string_data_type = "std :: string";
   this->args.emplace_back(argument(static_cast < std :: string && >(name),
     static_cast < std :: string && >(short_flag),
@@ -112,7 +135,8 @@ void ArgumentParser :: add_argument < std :: string > (std :: string && name,
     req,
     false, // is_flag
     static_cast < std :: string && >(default_value),
-    static_cast < std :: string && >(string_data_type)));
+    static_cast < std :: string && >(string_data_type))
+  );
 }
 
 template < typename data_t >
@@ -122,6 +146,9 @@ void ArgumentParser :: add_argument (std :: string && name,
   const bool & req,
   data_t && default_value)
 {
+  if (long_flag == "help")
+    this->error_private_flag(long_flag);
+
   std :: cerr << "Error parsing! Argument type not understood in command line." << std :: endl;
   std :: exit(ERROR_PARSER_INPUTS);
 }
@@ -473,6 +500,10 @@ std :: string ArgumentParser :: type_name ()
 
   if      ( std :: is_lvalue_reference < data_t > :: value ) r += "&";
   else if ( std :: is_rvalue_reference < data_t > :: value ) r += "&&";
+
+  // pretty layout on help message
+  std :: regex value_regex("(.*)(std::remove_reference\\<)(.*)(\\>)(.*)");
+  r = std::regex_replace(r, value_regex, "$3");
 
   return r;
 }

@@ -48,6 +48,8 @@ void ArgumentParser :: add_argument (std :: string && name,
                  !std :: is_same_v < data_t, std :: string >,
                  "Error parsing! Argument type not understood in command line.");
 
+  if (long_flag == "help")
+    this->error_private_flag(long_flag);
 
   if constexpr ( std :: is_same_v < data_t, std :: string > )
   {
@@ -196,6 +198,10 @@ std :: string ArgumentParser :: type_name ()
 
   if      ( std :: is_lvalue_reference < data_t > :: value ) r += "&";
   else if ( std :: is_rvalue_reference < data_t > :: value ) r += "&&";
+
+  // pretty layout on help message
+  std :: regex value_regex("(.*)(std::remove_reference\\<)(.*)(\\>)(.*)");
+  r = std::regex_replace(r, value_regex, "$3");
 
   return r;
 }

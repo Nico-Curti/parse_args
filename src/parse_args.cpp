@@ -13,6 +13,7 @@ int32_t ArgumentParser :: ERROR_PARSER_INVARG   = 106;
 int32_t ArgumentParser :: ERROR_PARSER_OUTRANGE = 107;
 int32_t ArgumentParser :: ERROR_PARSER_BOOL     = 108;
 int32_t ArgumentParser :: ERROR_PARSER_CHAR     = 109;
+int32_t ArgumentParser :: ERROR_PRIVATE_FLAG    = 110;
 
 
 // Argument Class
@@ -48,6 +49,13 @@ void ArgumentParser :: parse_args (const int32_t & argc, char ** argv)
   // This line is valid only if there are not vectors in command line
   //if ( static_cast < int32_t >(this->args.size()) < ((argc - 1) >> 1) )
   //  this->error_parsing_inputs_arg();
+
+  // check if help is required
+  for (int32_t i = 0; i < argc; ++i)
+  {
+    if ( std :: string (argv[i]) == "--help" )
+      this->print_help(0);
+  }
 
   for (auto & arg : this->args)
   {
@@ -197,6 +205,16 @@ void ArgumentParser :: error_parsing_char (const std :: string & name, const std
               << std :: endl;
 
   this->print_help(ArgumentParser :: ERROR_PARSER_CHAR);
+}
+
+void ArgumentParser :: error_private_flag (const std :: string & flag)
+{
+  std :: cerr << "Error parsing! Invalid flag provided. The given flag "
+              << flag
+              << " is reserved for special usage by the libray. Please change it with a different value"
+              << std :: endl;
+
+  this->print_help(ArgumentParser :: ERROR_PRIVATE_FLAG);
 }
 
 

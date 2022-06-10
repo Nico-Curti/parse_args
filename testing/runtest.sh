@@ -37,6 +37,12 @@ assert_eq $? 104 "Assertion failed"
 
 
 
+echo -n "- Help message: "
+./runtest --help 2>err.log 1>out.log
+assert_eq $? 0 "Assertion failed"
+
+
+
 echo -n "- Only bool parameter, long flag: "
 ./runtest --bool_value 0 2>err.log 1>out.log
 assert_eq $? 0 "Assertion failed"

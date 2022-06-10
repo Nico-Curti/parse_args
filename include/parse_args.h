@@ -8,6 +8,7 @@
 #include <string>   // std :: stod
 #include <iomanip>  // std :: setw
 #include <type_traits> // std :: is_same_v
+#include <regex>    // std :: regex
 #include <stdexcept>
 
 #ifndef _MSC_VER
@@ -108,6 +109,7 @@ class ArgumentParser
   static int32_t ERROR_PARSER_OUTRANGE; //<<< Error code for the catch management
   static int32_t ERROR_PARSER_BOOL; //<<< Error code for the catch management
   static int32_t ERROR_PARSER_CHAR; //<<< Error code for the catch management
+  static int32_t ERROR_PRIVATE_FLAG; //<<< Error code for the catch management
 
   // Private Members
 
@@ -325,6 +327,18 @@ private:
   *
   */
   void error_parsing_char (const std :: string & name, const std :: string & value);
+
+  /**
+  * @brief Error management utility.
+  *
+  * @details This function just print the related error message, printing the
+  * help function and finally exiting with the appropriated error.
+  * This error raises if a private flag is used by user.
+  *
+  * @param flag Flag set by user.
+  *
+  */
+  void error_private_flag (const std :: string & flag);
 
   /**
   * @brief Convert in string the variable dtype.
