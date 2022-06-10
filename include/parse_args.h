@@ -58,6 +58,7 @@ class ArgumentParser
     std :: string data_type; ///< data type name as string for the print
 
     bool required; ///< True if the argument is required, False otherwise
+    bool is_flag; ///< True if the argument is just a flag, False if it requires a value
 
     // Constructors
 
@@ -71,11 +72,18 @@ class ArgumentParser
     * @param long_flag Long flag for the command line identification as --var
     * @param help Help message for the user
     * @param required Switch on/off if the argument is required or not
+    * @param is_flag Switch on/off if the argument requires a value or not
     * @param default_value Default value to use if the parameter is not need
     * @param data_type Data type name as string for the help print
     *
     */
-    argument (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & required, std :: string && default_value, std :: string && data_type);
+    argument (std :: string && name,
+      std :: string && short_flag, std :: string && long_flag,
+      std :: string && help,
+      const bool & required,
+      const bool & is_flag,
+      std :: string && default_value,
+      std :: string && data_type);
 
     // Destructors
 
@@ -165,7 +173,28 @@ public:
   *
   */
   template < typename data_t >
-  void add_argument (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, data_t default_value=data_t());
+  void add_argument (std :: string && name,
+    std :: string && short_flag, std :: string && long_flag,
+    std :: string && help,
+    const bool & req,
+    data_t default_value=data_t());
+
+  /**
+  * @brief Add a new command line possible flag to search.
+  *
+  * @details This method is used to push new command line flag (on/off)
+  * to search during the argument parsing. The flag argument does not
+  * require any value but it is used to enable/disable a bool operation.
+  *
+  * @param name Parameter name/tag as unique string.
+  * @param short_flag Short flag for the command line identification as -v
+  * @param long_flag Long flag for the command line identification as --var
+  * @param help Help message for the user
+  *
+  */
+  void add_flag (std :: string && name,
+    std :: string && short_flag, std :: string && long_flag,
+    std :: string && help);
 
   /**
   * @brief Argument getter.

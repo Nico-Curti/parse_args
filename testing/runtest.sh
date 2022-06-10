@@ -41,12 +41,12 @@ echo -n "- Only bool parameter, long flag: "
 ./runtest --bool_value 0 2>err.log 1>out.log
 assert_eq $? 0 "Assertion failed"
 stdout=$(./runtest -b 0 2>err.log)
-correct=$(printf "With the boolean DISABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23")
+correct=$(printf "Flag DISABLED\nWith the boolean DISABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23\nThe integers vector contains: 1")
 if [ ! "$stdout" = "$correct" ]; then
   echo "${red}Assertion failed: incorrect stdout.${reset}"
 fi
 stdout=$(./runtest -b 1 2>err.log)
-correct=$(printf "With the boolean ENABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23")
+correct=$(printf "Flag DISABLED\nWith the boolean ENABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23\nThe integers vector contains: 1")
 if [ ! "$stdout" = "$correct" ]; then
   echo "${red}Assertion failed: incorrect stdout.${reset}"
 fi
@@ -57,12 +57,12 @@ echo -n "- Only bool parameter, short flag: "
 ./runtest -b 0 2>err.log 1>out.log
 assert_eq $? 0 "Assertion failed"
 stdout=$(./runtest -b 0 2>err.log)
-correct=$(printf "With the boolean DISABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23")
+correct=$(printf "Flag DISABLED\nWith the boolean DISABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23\nThe integers vector contains: 1")
 if [ ! "$stdout" = "$correct" ]; then
   echo "${red}Assertion failed: incorrect stdout.${reset}"
 fi
 stdout=$(./runtest -b 1 2>err.log)
-correct=$(printf "With the boolean ENABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23")
+correct=$(printf "Flag DISABLED\nWith the boolean ENABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23\nThe integers vector contains: 1")
 if [ ! "$stdout" = "$correct" ]; then
   echo "${red}Assertion failed: incorrect stdout.${reset}"
 fi
@@ -74,12 +74,12 @@ echo -n "- Only bool parameter, priority short flag: "
 ./runtest -b 0 --bool_value 1 2>err.log 1>out.log
 assert_eq $? 0 "Assertion failed: only bool parameter, long AND short flag"
 stdout=$(./runtest -b 0 --bool_value 1 2>err.log)
-correct=$(printf "With the boolean DISABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23")
+correct=$(printf "Flag DISABLED\nWith the boolean DISABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23\nThe integers vector contains: 1")
 if [ ! "$stdout" = "$correct" ]; then
   echo "${red}Assertion failed: incorrect stdout.${reset}"
 fi
 stdout=$(./runtest -b 1 --bool_value 0 2>err.log)
-correct=$(printf "With the boolean ENABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23")
+correct=$(printf "Flag DISABLED\nWith the boolean ENABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23\nThe integers vector contains: 1")
 if [ ! "$stdout" = "$correct" ]; then
   echo "${red}Assertion failed: incorrect stdout.${reset}"
 fi
@@ -91,12 +91,12 @@ echo -n "- Unknown flags: "
 ./runtest -b 0 -c 0 2>err.log 1>out.log
 assert_eq $? 0 "Assertion failed: unknown flag ignored since not called by get"
 stdout=$(./runtest -b 0 -c 0 2>err.log)
-correct=$(printf "With the boolean DISABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23")
+correct=$(printf "Flag DISABLED\nWith the boolean DISABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23\nThe integers vector contains: 1")
 if [ ! "$stdout" = "$correct" ]; then
   echo "${red}Assertion failed: incorrect stdout.${reset}"
 fi
 stdout=$(./runtest -b 1 -c 0 2>err.log)
-correct=$(printf "With the boolean ENABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23")
+correct=$(printf "Flag DISABLED\nWith the boolean ENABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23\nThe integers vector contains: 1")
 if [ ! "$stdout" = "$correct" ]; then
   echo "${red}Assertion failed: incorrect stdout.${reset}"
 fi
@@ -107,12 +107,44 @@ echo -n "- Variable assignement: "
 ./runtest -b 0 -s "1" -i 2 -d 3 -f 4 2>err.log 1>out.log
 assert_eq $? 0 "Assertion failed"
 stdout=$(./runtest -b 0 -s "1" -i 2 -d 3 -f 4 2>err.log)
-correct=$(printf "With the boolean DISABLED my variables are:\n- String : 1\n- Integer : 2\n- Double : 3\n- Float : 4")
+correct=$(printf "Flag DISABLED\nWith the boolean DISABLED my variables are:\n- String : 1\n- Integer : 2\n- Double : 3\n- Float : 4\nThe integers vector contains: 1")
 if [ ! "$stdout" = "$correct" ]; then
   echo "${red}Assertion failed: incorrect stdout.${reset}"
 fi
 stdout=$(./runtest -b 1 -s "1" -i 2 -d 3 -f 4 2>err.log)
-correct=$(printf "With the boolean ENABLED my variables are:\n- String : 1\n- Integer : 2\n- Double : 3\n- Float : 4")
+correct=$(printf "Flag DISABLED\nWith the boolean ENABLED my variables are:\n- String : 1\n- Integer : 2\n- Double : 3\n- Float : 4\nThe integers vector contains: 1")
+if [ ! "$stdout" = "$correct" ]; then
+  echo "${red}Assertion failed: incorrect stdout.${reset}"
+fi
+
+
+
+echo -n "- Add flag without value: "
+./runtest -b 0 --flag 2>err.log 1>out.log
+assert_eq $? 0 "Assertion failed"
+stdout=$(./runtest -b 0 --flag 2>err.log)
+correct=$(printf "Flag ENABLED\nWith the boolean DISABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23\nThe integers vector contains: 1")
+if [ ! "$stdout" = "$correct" ]; then
+  echo "${red}Assertion failed: incorrect stdout.${reset}"
+fi
+stdout=$(./runtest -b 1 --flag 2>err.log)
+correct=$(printf "Flag ENABLED\nWith the boolean ENABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23\nThe integers vector contains: 1")
+if [ ! "$stdout" = "$correct" ]; then
+  echo "${red}Assertion failed: incorrect stdout.${reset}"
+fi
+
+
+
+echo -n "- Add vector of values: "
+./runtest -b 0 -v 42 23 66 2>err.log 1>out.log
+assert_eq $? 0 "Assertion failed"
+stdout=$(./runtest -b 0 -v 42 23 66 2>err.log)
+correct=$(printf "Flag DISABLED\nWith the boolean DISABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23\nThe integers vector contains: 42, 23, 66")
+if [ ! "$stdout" = "$correct" ]; then
+  echo "${red}Assertion failed: incorrect stdout.${reset}"
+fi
+stdout=$(./runtest -b 1 -v 42 23 66 2>err.log)
+correct=$(printf "Flag DISABLED\nWith the boolean ENABLED my variables are:\n- String : This is the default value\n- Integer : 42\n- Double : 3.14\n- Float : 1.23\nThe integers vector contains: 42, 23, 66")
 if [ ! "$stdout" = "$correct" ]; then
   echo "${red}Assertion failed: incorrect stdout.${reset}"
 fi

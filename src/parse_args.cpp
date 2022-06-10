@@ -17,8 +17,20 @@ int32_t ArgumentParser :: ERROR_PARSER_CHAR     = 109;
 
 // Argument Class
 
-ArgumentParser :: argument :: argument (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & required, std :: string && defualt_value, std :: string && data_type)
-                                       : name (std :: move(name)), short_flag (std :: move(short_flag)), long_flag (std :: move(long_flag)), help (std :: move(help)), defualt_value (std :: move(defualt_value)), data_type (std :: move(data_type)), required (required)
+ArgumentParser :: argument :: argument (std :: string && name,
+  std :: string && short_flag, std :: string && long_flag,
+  std :: string && help,
+  const bool & required,
+  const bool & is_flag,
+  std :: string && defualt_value,
+  std :: string && data_type)
+    : name (std :: move(name)),
+      short_flag (std :: move(short_flag)), long_flag (std :: move(long_flag)),
+      help (std :: move(help)),
+      defualt_value (std :: move(defualt_value)),
+      data_type (std :: move(data_type)),
+      required (required),
+      is_flag (is_flag)
 {
 }
 
@@ -33,8 +45,9 @@ void ArgumentParser :: parse_args (const int32_t & argc, char ** argv)
 {
   this->program = std :: string(argv[0]);
 
-  if ( static_cast < int32_t >(this->args.size()) < ((argc - 1) >> 1) )
-    this->error_parsing_inputs_arg();
+  // This line is valid only if there are not vectors in command line
+  //if ( static_cast < int32_t >(this->args.size()) < ((argc - 1) >> 1) )
+  //  this->error_parsing_inputs_arg();
 
   for (auto & arg : this->args)
   {
@@ -46,16 +59,24 @@ void ArgumentParser :: parse_args (const int32_t & argc, char ** argv)
            std :: string (argv[i]) == "--" + arg.long_flag
          )
       {
-        arg.values.emplace_back(argv[i + 1]);
-
-        for (int32_t j = i + 2; j < argc; ++j)
+        if (arg.is_flag)
         {
-          if ( argv[j][0] != '-' ) arg.values.emplace_back(argv[j]);
-          else break;
+          found = true;
+          arg.values.emplace_back("1");
         }
+        else
+        {
+          arg.values.emplace_back(argv[i + 1]);
 
-        found = true;
-        break;
+          for (int32_t j = i + 2; j < argc; ++j)
+          {
+            if ( argv[j][0] != '-' ) arg.values.emplace_back(argv[j]);
+            else break;
+          }
+
+          found = true;
+          break;
+        }
       }
     }
 
@@ -178,6 +199,17 @@ void ArgumentParser :: error_parsing_char (const std :: string & name, const std
   this->print_help(ArgumentParser :: ERROR_PARSER_CHAR);
 }
 
+
+void ArgumentParser :: add_flag (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help)
+{
+  this->args.emplace_back(argument(static_cast < std :: string && >(name),
+    static_cast < std :: string && >(short_flag), static_cast < std :: string && >(long_flag),
+    static_cast < std :: string && >(help),
+    false, // require
+    true, // is_flag
+    static_cast < std :: string && >("0"),
+    static_cast < std :: string && >("bool")));
+}
 
 // export the specialized members
 

@@ -8,49 +8,119 @@ namespace parser
 {
 
 template < >
-void ArgumentParser :: add_argument < int32_t > (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, int32_t && default_value)
+void ArgumentParser :: add_argument < int32_t > (std :: string && name,
+  std :: string && short_flag, std :: string && long_flag,
+  std :: string && help,
+  const bool & req,
+  int32_t && default_value)
 {
   std :: string string_data_type = "int";
-  this->args.emplace_back(argument(static_cast < std :: string && >(name), static_cast < std :: string && >(short_flag), static_cast < std :: string && >(long_flag), static_cast < std :: string && >(help), req, static_cast < std :: string && >(std :: to_string(default_value)), static_cast < std :: string && >(string_data_type)));
+  this->args.emplace_back(argument(static_cast < std :: string && >(name),
+    static_cast < std :: string && >(short_flag),
+    static_cast < std :: string && >(long_flag),
+    static_cast < std :: string && >(help),
+    req,
+    false, // is_flag
+    static_cast < std :: string && >(std :: to_string(default_value)),
+    static_cast < std :: string && >(string_data_type)));
 }
 
 template < >
-void ArgumentParser :: add_argument < float > (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, float && default_value)
+void ArgumentParser :: add_argument < float > (std :: string && name,
+  std :: string && short_flag, std :: string && long_flag,
+  std :: string && help,
+  const bool & req,
+  float && default_value)
 {
   std :: string string_data_type = "float";
-  this->args.emplace_back(argument(static_cast < std :: string && >(name), static_cast < std :: string && >(short_flag), static_cast < std :: string && >(long_flag), static_cast < std :: string && >(help), req, static_cast < std :: string && >(std :: to_string(default_value)), static_cast < std :: string && >(string_data_type)));
+  this->args.emplace_back(argument(static_cast < std :: string && >(name),
+    static_cast < std :: string && >(short_flag),
+    static_cast < std :: string && >(long_flag),
+    static_cast < std :: string && >(help),
+    req,
+    false, // is_flag
+    static_cast < std :: string && >(std :: to_string(default_value)),
+    static_cast < std :: string && >(string_data_type)));
 }
 
 template < >
-void ArgumentParser :: add_argument < double > (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, double && default_value)
+void ArgumentParser :: add_argument < double > (std :: string && name,
+  std :: string && short_flag, std :: string && long_flag,
+  std :: string && help,
+  const bool & req,
+  double && default_value)
 {
   std :: string string_data_type = "double";
-  this->args.emplace_back(argument(static_cast < std :: string && >(name), static_cast < std :: string && >(short_flag), static_cast < std :: string && >(long_flag), static_cast < std :: string && >(help), req, static_cast < std :: string && >(std :: to_string(default_value)), static_cast < std :: string && >(string_data_type)));
+  this->args.emplace_back(argument(static_cast < std :: string && >(name),
+    static_cast < std :: string && >(short_flag),
+    static_cast < std :: string && >(long_flag),
+    static_cast < std :: string && >(help),
+    req,
+    false, // is_flag
+    static_cast < std :: string && >(std :: to_string(default_value)),
+    static_cast < std :: string && >(string_data_type)));
 }
 
 template < >
-void ArgumentParser :: add_argument < char > (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, char && default_value)
+void ArgumentParser :: add_argument < char > (std :: string && name,
+  std :: string && short_flag, std :: string && long_flag,
+  std :: string && help,
+  const bool & req,
+  char && default_value)
 {
   std :: string string_data_type = "char";
-  this->args.emplace_back(argument(static_cast < std :: string && >(name), static_cast < std :: string && >(short_flag), static_cast < std :: string && >(long_flag), static_cast < std :: string && >(help), req, static_cast < std :: string && >(std :: to_string(default_value)), static_cast < std :: string && >(string_data_type)));
+  this->args.emplace_back(argument(static_cast < std :: string && >(name),
+    static_cast < std :: string && >(short_flag),
+    static_cast < std :: string && >(long_flag),
+    static_cast < std :: string && >(help),
+    req,
+    false, // is_flag
+    static_cast < std :: string && >(std :: to_string(default_value)),
+    static_cast < std :: string && >(string_data_type)));
 }
 
 template < >
-void ArgumentParser :: add_argument < bool > (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, bool && default_value)
+void ArgumentParser :: add_argument < bool > (std :: string && name,
+  std :: string && short_flag, std :: string && long_flag,
+  std :: string && help,
+  const bool & req,
+  bool && default_value)
 {
   std :: string string_data_type = "bool";
-  this->args.emplace_back(argument(static_cast < std :: string && >(name), static_cast < std :: string && >(short_flag), static_cast < std :: string && >(long_flag), static_cast < std :: string && >(help), req, static_cast < std :: string && >(std :: to_string(default_value)), static_cast < std :: string && >(string_data_type)));
+  this->args.emplace_back(argument(static_cast < std :: string && >(name),
+    static_cast < std :: string && >(short_flag),
+    static_cast < std :: string && >(long_flag),
+    static_cast < std :: string && >(help),
+    req,
+    false, // is_flag
+    static_cast < std :: string && >(std :: to_string(default_value)),
+    static_cast < std :: string && >(string_data_type)));
 }
 
 template < >
-void ArgumentParser :: add_argument < std :: string > (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, std :: string && default_value)
+void ArgumentParser :: add_argument < std :: string > (std :: string && name,
+  std :: string && short_flag, std :: string && long_flag,
+  std :: string && help,
+  const bool & req,
+  std :: string && default_value)
 {
   std :: string string_data_type = "std :: string";
-  this->args.emplace_back(argument(static_cast < std :: string && >(name), static_cast < std :: string && >(short_flag), static_cast < std :: string && >(long_flag), static_cast < std :: string && >(help), req, static_cast < std :: string && >(default_value), static_cast < std :: string && >(string_data_type)));
+  this->args.emplace_back(argument(static_cast < std :: string && >(name),
+    static_cast < std :: string && >(short_flag),
+    static_cast < std :: string && >(long_flag),
+    static_cast < std :: string && >(help),
+    req,
+    false, // is_flag
+    static_cast < std :: string && >(default_value),
+    static_cast < std :: string && >(string_data_type)));
 }
 
 template < typename data_t >
-void ArgumentParser :: add_argument (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, data_t && default_value)
+void ArgumentParser :: add_argument (std :: string && name,
+  std :: string && short_flag, std :: string && long_flag,
+  std :: string && help,
+  const bool & req,
+  data_t && default_value)
 {
   std :: cerr << "Error parsing! Argument type not understood in command line." << std :: endl;
   std :: exit(ERROR_PARSER_INPUTS);

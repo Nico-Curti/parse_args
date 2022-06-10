@@ -7,7 +7,9 @@ void parse_args (int argc, char ** argv,
                  int32_t & i,
                  double & d,
                  float & f,
-                 bool & b
+                 bool & b,
+                 bool & flag,
+                 std :: vector < int32_t > & integers
                  )
 
 {
@@ -21,6 +23,10 @@ void parse_args (int argc, char ** argv,
   argparse.add_argument < float         >("fArg", "f", "flt_value",  "This is the help message for the float  value set as --flt_value",  false, 1.23f);
   argparse.add_argument < bool          >("bArg", "b", "bool_value", "This is the help message for the bool   value set as --bool_value", true);
 
+  argparse.add_flag ("eArg", "e", "flag", "This is the help message for the flag set as --flag");
+
+  argparse.add_argument < int32_t > ("vArg", "v", "vector", "This is the help message for the vector set as --vector", false, 1);
+
   argparse.parse_args(argc, argv);
 
   argparse.get("sArg", s);
@@ -28,8 +34,22 @@ void parse_args (int argc, char ** argv,
   argparse.get("dArg", d);
   argparse.get("fArg", f);
   argparse.get("bArg", b);
+  argparse.get("eArg", flag);
+  argparse.get("vArg", integers);
 
   return;
+}
+
+
+template < typename T >
+std :: ostream & operator << (std :: ostream & os, const std :: vector < T > & x)
+{
+  for ( std :: size_t i = 0; i < x.size() - 1; ++i )
+    os << x[i] << ", ";
+
+  os << x[x.size() - 1];
+
+  return os;
 }
 
 
@@ -40,8 +60,15 @@ int main (int argc, char ** argv)
   double mydbl;
   float myflt;
   bool mybool;
+  bool myflag;
+  std :: vector < int32_t > integers;
 
-  parse_args (argc, argv, mystr, myint, mydbl, myflt, mybool);
+  parse_args (argc, argv, mystr, myint, mydbl, myflt, mybool, myflag, integers);
+
+  if (myflag)
+    std :: cout << "Flag ENABLED" << std :: endl;
+  else
+    std :: cout << "Flag DISABLED" << std :: endl;
 
   if (mybool)
   {
@@ -59,6 +86,8 @@ int main (int argc, char ** argv)
     std :: cout << "- Double : "  << mydbl << std :: endl;
     std :: cout << "- Float : "   << myflt << std :: endl;
   }
+
+  std :: cout << "The integers vector contains: " << integers << std :: endl;
 
   return 0;
 }
