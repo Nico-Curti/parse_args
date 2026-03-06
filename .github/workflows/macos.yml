@@ -64,4 +64,4 @@ jobs:
         buildDirectory: '${{ runner.workspace }}/buildDirectory'
         cmakeAppendedArgs: "-G\"${{ matrix.cfg.generator }}\" -DCMAKE_BUILD_TYPE:STRING=Release"
         cmakeBuildType: 'Release'
-        buildWithCMakeArgs: '--config Release --target install'
+        buildWithCMakeArgs: '--config Release --target install --prefix "${{ github.workspace }}/install"'
