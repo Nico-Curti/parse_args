@@ -1,9 +1,10 @@
-libdir=@CMAKE_SOURCE_PATH@/lib
-includedir=@CMAKE_SOURCE_PATH@/include
+prefix=@CMAKE_INSTALL_PREFIX@
+libdir=${prefix}/@INSTALL_LIB_DIR@
+includedir=${prefix}/@INSTALL_INCLUDE_DIR@
 
 Name: ParseArgs
-Description: A library for parsing command line arguments in C++.
+Description: @CMAKE_PROJECT_DESCRIPTION@
 
 Version: @ParseArgs_VERSION@
-Libs: -L${libdir} -l@CMAKE_STATIC_LIBRARY_PREFIX@parseargs/lib/
+Libs: -L${libdir} -lDNetPRO
 Cflags: -I${includedir}
