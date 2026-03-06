@@ -248,7 +248,7 @@ target_link_libraries(${ParseArgslib} ${linked_libs})
 
 set_target_properties(${ParseArgslib} PROPERTIES PUBLIC_HEADER "${ParseArgs_HEADER}")
 
-install(TARGETS ${ParseArgslib} EXPORT ParseArgsargets
+install(TARGETS ${ParseArgslib} EXPORT ParseArgsTargets
   RUNTIME DESTINATION "${ParseArgs_INSTALL_BIN_DIR}"
   LIBRARY DESTINATION "${ParseArgs_INSTALL_LIB_DIR}"
   ARCHIVE DESTINATION "${ParseArgs_INSTALL_LIB_DIR}"
