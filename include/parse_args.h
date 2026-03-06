@@ -10,6 +10,7 @@
 #include <type_traits> // std :: is_same_v
 #include <regex>    // std :: regex
 #include <stdexcept>
+#include <stdint.h> // int32_t
 
 #ifndef _MSC_VER
 
