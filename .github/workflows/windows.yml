@@ -39,6 +39,6 @@ jobs:
         cmakeListsTxtPath: '${{ github.workspace }}/CMakeLists.txt'
         useVcpkgToolchainFile: false
         buildDirectory: '${{ runner.workspace }}/buildDirectory'
-        cmakeAppendedArgs: "-G\"${{ matrix.cfg.generator }}\" -DCMAKE_BUILD_TYPE:STRING=Release"
+        cmakeAppendedArgs: "-G\"${{ matrix.cfg.generator }}\" -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/install"
         cmakeBuildType: 'Release'
-        buildWithCMakeArgs: '--config Release --target install --prefix "${{ github.workspace }}/install"'
+        buildWithCMakeArgs: '--config Release --target install'
